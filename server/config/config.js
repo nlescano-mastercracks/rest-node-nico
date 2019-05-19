@@ -12,7 +12,7 @@ let urlDB;
 if (process.env.NODE_ENV === 'dev') {
     urlDB = 'mongodb://localhost:27017/cafe'
 } else {
-    urlDB = 'mongodb://uvv7s9po0zgauzld2w4i:APjyPBDxmeg3Rtrl5x9N@bgeevltcjiukgkt-mongodb.services.clever-cloud.com:27017/bgeevltcjiukgkt';
+    urlDB = process.env.MONGO_URI;
 }
 
 process.env.URLDB = urlDB;
