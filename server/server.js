@@ -24,3 +24,7 @@ mongoose.connect(process.env.URLDB,
     });
 
 app.listen(process.env.PORT)
+
+//habilitar la carpeta  public
+const path = require('path');
+app.use(express.static(path.resolve(__dirname, '../public')))
