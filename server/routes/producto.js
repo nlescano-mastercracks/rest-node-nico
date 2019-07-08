@@ -84,31 +84,23 @@ app.get('/productos/:id', (req, res) => {
 //  Buscar productos
 // ===========================
 app.get('/productos/buscar/:termino', verificaToken, (req, res) => {
-
     let termino = req.params.termino;
-
     let regex = new RegExp(termino, 'i');
-
     Producto.find({ nombre: regex })
         .populate('categoria', 'nombre')
         .exec((err, productos) => {
-
-
             if (err) {
                 return res.status(500).json({
                     ok: false,
                     err
                 });
             }
-
             res.json({
                 ok: true,
                 productos
             })
 
         })
-
-
 });
 
 
@@ -194,18 +186,14 @@ app.put('/productos/:id', verificaToken, (req, res) => {
 //  Borrar un producto
 // ===========================
 app.delete('/productos/:id', verificaToken, (req, res) => {
-
     let id = req.params.id;
-
     Producto.findById(id, (err, productoDB) => {
-
         if (err) {
             return res.status(500).json({
                 ok: false,
                 err
             });
         }
-
         if (!productoDB) {
             return res.status(400).json({
                 ok: false,
@@ -214,9 +202,7 @@ app.delete('/productos/:id', verificaToken, (req, res) => {
                 }
             });
         }
-
         productoDB.disponible = false;
-
         productoDB.save((err, productoBorrado) => {
 
             if (err) {
@@ -225,18 +211,13 @@ app.delete('/productos/:id', verificaToken, (req, res) => {
                     err
                 });
             }
-
             res.json({
                 ok: true,
                 producto: productoBorrado,
                 mensaje: 'Producto borrado'
             });
-
         })
-
     })
-
-
 });
 
 
